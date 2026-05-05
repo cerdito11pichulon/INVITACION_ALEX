@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Invitación de ALEX</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#f6f0e3;
+  --paper2:#efe4cf;
+  --ink:#1e1a14;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family:"Nunito",system-ui;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255,120,80,.30), transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(200,10,40,.35), transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(255,50,20,.20), transparent 45%),
+    radial-gradient(circle at 70% 70%, rgba(160,0,30,.25), transparent 40%),
+    linear-gradient(135deg, #1a0005, #3a0010, #1f0008);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+
+.confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:500;
+}
+.confetti span{
+  position:absolute;
+  width:8px;
+  height:14px;
+  opacity:.9;
+  animation:fall 2.8s ease-out forwards;
+}
+@keyframes fall{
+  0%{transform:translateY(-20vh) rotate(0deg);opacity:1}
+  100%{transform:translateY(120vh) rotate(360deg);opacity:0}
+}
+
+.stage{
+  position:relative;
+  width:92vw;
+  max-width:580px;
+  height:360px;
+}
+.envelope{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,#e7d7b8,#dfcfae);
+  border-radius:18px;
+  box-shadow:0 25px 40px rgba(0,0,0,.45);
+}
+.toTag{
+  position:absolute;
+  bottom:16px;
+  left:18px;
+  font-weight:900;
+  background:rgba(255,255,255,.25);
+  padding:8px 12px;
+  border-radius:12px;
+  color:#2a241c;
+  z-index:30;
+}
+.seal{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:180px;
+  height:180px;
+  border-radius:16px;
+  background:linear-gradient(180deg,#ff3c6f,#b61515);
+  box-shadow:0 15px 30px rgba(0,0,0,.5);
+  cursor:pointer;
+  z-index:40;
+  overflow:hidden;
+}
+.seal .logo{
+  position:absolute;
+  inset:0;
+  background:url("roblox.png") center/cover no-repeat;
+}
+
+.letter{
+  position:fixed;
+  left:50%;
+  top:50%;
+  width:min(520px,92vw);
+  height:min(620px,78vh);
+  border-radius:16px;
+  transform:translate(-50%,40%);
+  opacity:0;
+  z-index:200;
+  box-shadow:0 30px 60px rgba(0,0,0,.55);
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(220,40,130,.15), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(80,60,140,.18), transparent 45%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.03) 0px,
+      rgba(255,255,255,.03) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    linear-gradient(180deg,#1a1020,#0e0a18);
+}
+.letter.open{
+  animation:letterSlide 1.25s cubic-bezier(.22,.8,.18,1) forwards;
+}
+@keyframes letterSlide{
+  0%{opacity:0;transform:translate(-50%,55%)}
+  60%{opacity:1;transform:translate(-50%,-54%)}
+  100%{opacity:1;transform:translate(-50%,-50%)}
+}
+.letterScroll{
+  height:100%;
+  padding:24px 22px;
+  overflow-y:auto;
+  color:var(--ink);
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(8px);
+  animation:fadeIn .9s ease forwards;
+}
+.fade.d1{animation-delay:.25s}
+.fade.d2{animation-delay:.45s}
+.fade.d3{animation-delay:.65s}
+.fade.d4{animation-delay:.85s}
+@keyframes fadeIn{
+  to{opacity:1;transform:none}
+}
+
+.neon-pink{
+  color:#f03fa0;
+  text-shadow:
+    0 0 6px rgba(240,63,160,.8),
+    0 0 16px rgba(240,63,160,.55),
+    0 0 30px rgba(240,63,160,.35);
+}
+.neon-blue{
+  color:#b060e8;
+  text-shadow:
+    0 0 6px rgba(176,96,232,.75),
+    0 0 16px rgba(176,96,232,.5),
+    0 0 30px rgba(176,96,232,.35);
+}
+.neon-soft{
+  color:#e8d8f5;
+  text-shadow:
+    0 0 4px rgba(232,216,245,.45),
+    0 0 10px rgba(232,216,245,.25);
+}
+
+.headline{
+  font-family:"Baloo 2";
+  font-size:24px;
+  font-weight:800;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.sub{
+  font-weight:800;
+  margin-bottom:14px;
+}
+.card{
+  background:rgba(176,60,140,.08);
+  border:1px solid rgba(240,63,160,.18);
+  border-radius:14px;
+  padding:14px;
+  margin:12px 0;
+  font-weight:800;
+}
+.card b{display:block;margin-bottom:6px}
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:12px 16px;
+  border-radius:14px;
+  background:rgba(176,96,232,.12);
+  border:1px solid rgba(176,96,232,.30);
+  color:#e8d8f5;
+  font-weight:900;
+  text-decoration:none;
+  text-shadow:
+    0 0 4px rgba(232,216,245,.6),
+    0 0 10px rgba(232,216,245,.35);
+  transition:transform .15s ease,background .15s ease,box-shadow .15s ease;
+}
+.btn:hover{
+  background:rgba(176,96,232,.22);
+  box-shadow:
+    0 0 12px rgba(176,96,232,.4),
+    0 0 22px rgba(240,63,160,.25);
+  transform:translateY(-1px);
+}
+.btn:active{transform:translateY(0);}
+
+.footer{
+  margin-top:18px;
+  font-weight:900;
+}
+
+.muteBtn{
+  position:absolute;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  z-index:300;
+  width:48px;
+  height:48px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:rgba(176,96,232,.12);
+  border:1px solid rgba(176,96,232,.30);
+  cursor:pointer;
+  user-select:none;
+  color:#e8d8f5;
+  font-size:20px;
+  box-shadow:0 0 10px rgba(176,96,232,.15);
+  transition:transform .12s ease,background .12s ease,box-shadow .12s ease;
+}
+.muteBtn:hover{
+  background:rgba(176,96,232,.22);
+  box-shadow:
+    0 0 14px rgba(176,96,232,.25),
+    0 0 20px rgba(240,63,160,.20);
+  transform:translateX(-50%) translateY(-1px);
+}
+.muteBtn:active{
+  transform:translateX(-50%) translateY(0px) scale(.99);
+}
+
+@media(max-width:560px){
+  .letter{height:70vh}
+  .headline{font-size:20px}
+}
+
+@keyframes discoPink{
+  0%,45%{
+    opacity:1;
+    text-shadow:
+      0 0 6px rgba(240,63,160,.9),
+      0 0 16px rgba(240,63,160,.7),
+      0 0 32px rgba(240,63,160,.45);
+  }
+  50%,100%{
+    opacity:.35;
+    text-shadow:0 0 4px rgba(240,63,160,.25);
+  }
+}
+@keyframes discoBlue{
+  0%,45%{
+    opacity:.35;
+    text-shadow:0 0 4px rgba(176,96,232,.25);
+  }
+  50%,100%{
+    opacity:1;
+    text-shadow:
+      0 0 6px rgba(176,96,232,.9),
+      0 0 16px rgba(176,96,232,.7),
+      0 0 32px rgba(176,96,232,.45);
+  }
+}
+
+.neon-pink{animation:discoPink 1.5s ease-in-out infinite;}
+.neon-blue{animation:discoBlue 1.5s ease-in-out infinite;}
+
+@media(prefers-reduced-motion:reduce){
+  .neon-pink,.neon-blue{animation:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="confetti" id="confetti"></div>
+
+<div class="stage">
+  <div class="envelope">
+    <div class="toTag">Para: <span id="toName">Invitado</span></div>
+    <div class="seal" id="seal">
+      <div class="logo"></div>
+    </div>
+  </div>
+</div>
+
+<div class="letter" id="letter">
+  <button class="muteBtn" id="muteBtn" aria-label="Silenciar música" title="Silenciar / Activar música">🔊</button>
+  <div class="letterScroll">
+    <div class="headline fade d1 neon-pink">
+      ​😈​ESTÁS INVITADO AL CUMPLE DE ALEX POR SUS 19 AÑITOS​😈​
+    </div>
+    <div class="sub fade d2 neon-blue">
+      Vamos a tomar, bailar y seguir tomando🍷​🍷​🍷​
+    </div>
+    <div class="card fade d3 neon-soft">
+      <b>📅 Fecha</b>
+      Viernes 8 de mayo del 2026
+    </div>
+    <div class="card fade d3 neon-soft">
+      <b>🕗 Hora</b>
+      7:00 pm puntual sino castigo💀​💀​💀​💀​
+    </div>
+    <div class="card fade d4 neon-soft">
+      <b>📍 Lugar</b>
+      LONDON🫦​🎉<br>
+      <a class="btn" id="mapsBtn" target="_blank">🗺️ Ver en Google Maps</a>
+    </div>
+    <div class="card fade d4 neon-soft">
+      <b>TEMATICA🤔​🤔​</b>
+      SI NO ERES CACHUDO NO ENTRAS🫎​🫎​ 
+    </div>
+    <div class="footer fade d4 neon-soft">
+      No faltes 👀🔥<br>
+      Confirma Asistencia al interno 🗣🗣<br>
+      Shot de RON al que llega tarde
+    </div>
+  </div>
+</div>
+
+<audio id="bgm" src="musica.mp3" preload="auto" loop></audio>
+
+<script>
+const params = new URLSearchParams(location.search);
+document.getElementById("toName").textContent = params.get("n") || "Invitado";
+
+document.getElementById("mapsBtn").href = "https://maps.app.goo.gl/Avni48MxpsyGWiYh7";
+
+function launchConfetti(){
+  const c = document.getElementById("confetti");
+  for(let i=0;i<50;i++){
+    const s = document.createElement("span");
+    s.style.left = Math.random()*100+"%";
+    s.style.animationDelay = Math.random()*.3+"s";
+    s.style.background = `hsl(${Math.random()*360},90%,65%)`;
+    c.appendChild(s);
+    setTimeout(()=>s.remove(),3000);
+  }
+}
+
+const bgm = document.getElementById("bgm");
+bgm.volume = 0.55;
+const savedMuted = localStorage.getItem("bgmMuted");
+if(savedMuted==="true") bgm.muted = true;
+
+const muteBtn = document.getElementById("muteBtn");
+function refreshMuteIcon(){
+  muteBtn.textContent = bgm.muted ? "🔇" : "🔊";
+  muteBtn.setAttribute("aria-label", bgm.muted ? "Activar música" : "Silenciar música");
+}
+refreshMuteIcon();
+
+muteBtn.addEventListener("click",(e)=>{
+  e.stopPropagation();
+  bgm.muted = !bgm.muted;
+  localStorage.setItem("bgmMuted",String(bgm.muted));
+  refreshMuteIcon();
+});
+
+let opened = false;
+document.getElementById("seal").onclick = async ()=>{
+  if(opened) return;
+  opened = true;
+  launchConfetti();
+  document.getElementById("letter").classList.add("open");
+  try{ await bgm.play(); }catch(err){}
+};
+</script>
+
+</body>
+</html>
